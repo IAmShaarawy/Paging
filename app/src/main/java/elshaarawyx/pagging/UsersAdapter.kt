@@ -1,15 +1,13 @@
 package elshaarawyx.pagging
 
-import android.support.v7.recyclerview.extensions.ListAdapter
+import android.arch.paging.PagedListAdapter
 import android.support.v7.util.DiffUtil
-import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
 import android.view.ViewGroup
 
 /**
  * Created by elshaarawy on 10/13/18.
  */
-class UsersAdapter : ListAdapter<UserEntity, UserViewHolder>(USER_COMPARATOR) {
+class UsersAdapter : PagedListAdapter<UserEntity, UserViewHolder>(USER_COMPARATOR) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder =
             UserViewHolder.create(parent)
 
