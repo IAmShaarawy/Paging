@@ -12,7 +12,7 @@ import kotlinx.coroutines.experimental.launch
 class MainModel : UserModel {
 
     override inline fun loadUsers(crossinline onFailure: (String) -> Unit,
-                                  noinline onSuccess: (User) -> Unit) {
+                                  noinline onSuccess: (UserEntity) -> Unit) {
         GlobalScope.launch {
 
             val response = GithubAPIsFactory()

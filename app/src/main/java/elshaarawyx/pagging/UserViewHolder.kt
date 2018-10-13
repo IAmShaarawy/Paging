@@ -10,12 +10,12 @@ import kotlinx.android.synthetic.main.item_user.view.*
  * Created by elshaarawy on 10/13/18.
  */
 class UserViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-    fun bind(user: User) {
+    fun bind(userEntity: UserEntity) {
         itemView.apply {
-            userAvatar loadAsRounded user.avatar
-            userLogin.text = user.login
+            userAvatar loadAsRounded userEntity.avatar
+            userLogin.text = userEntity.login
             setOnClickListener {
-                context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(user.profileUrl)))
+                context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(userEntity.profileUrl)))
             }
         }
     }

@@ -10,5 +10,5 @@ import retrofit2.http.Query
  */
 interface UsersAPIs {
     @GET("/users")
-    fun retrieveUsers(@Query("since") since: Long): Deferred<Response<List<User>>>
+    fun retrieveUsers(@Query("since") since: Long): Deferred<Response<List<UserEntity>>>
 }
