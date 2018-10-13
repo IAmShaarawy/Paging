@@ -12,7 +12,7 @@ import kotlinx.coroutines.experimental.launch
 class MainModel : UserModel {
 
     override inline fun loadUsers(crossinline onFailure: (String) -> Unit,
-                                  noinline onSuccess: (UserEntity) -> Unit) {
+                                  noinline onSuccess: (List<UserEntity>) -> Unit) {
         GlobalScope.launch {
 
             val response = GithubAPIsFactory()
@@ -22,10 +22,9 @@ class MainModel : UserModel {
 
             GlobalScope.launch(Dispatchers.Main) {
                 if (response.isSuccessful) {
-                    response.body()?.forEach {
-                        delay(300)
-                        onSuccess(it)
-                    } ?: onFailure("No users found")
+                    response.body()
+                            ?.also(onSuccess)
+                            ?: onFailure("No users found")
                 } else {
                     onFailure("Failed to load users error: ${response.code()}, ${response.errorBody()}")
                 }

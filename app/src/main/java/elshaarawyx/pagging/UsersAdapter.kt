@@ -1,5 +1,7 @@
 package elshaarawyx.pagging
 
+import android.support.v7.recyclerview.extensions.ListAdapter
+import android.support.v7.util.DiffUtil
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,23 +9,23 @@ import android.view.ViewGroup
 /**
  * Created by elshaarawy on 10/13/18.
  */
-class UsersAdapter(private val usersList: MutableList<UserEntity>) : RecyclerView.Adapter<UserViewHolder>() {
+class UsersAdapter : ListAdapter<UserEntity, UserViewHolder>(USER_COMPARATOR) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder =
-            parent.run {
-                LayoutInflater.from(context).inflate(R.layout.item_user, this, false)
-            }.let { UserViewHolder(it) }
-
-
-    override fun getItemCount(): Int = usersList.size
+            UserViewHolder.create(parent)
 
 
     override fun onBindViewHolder(userViewHolder: UserViewHolder, position: Int) =
-            userViewHolder.bind(usersList[position])
+            getItem(position)?.run(userViewHolder::bind) ?: Unit
 
-    fun updateUsers(userEntity: UserEntity?): Unit {
-        userEntity?.let {
-            usersList.add(it)
-            notifyItemInserted(usersList.size)
+
+    companion object {
+        val USER_COMPARATOR = object : DiffUtil.ItemCallback<UserEntity>() {
+            override fun areItemsTheSame(oldItem: UserEntity, newItem: UserEntity): Boolean =
+                    oldItem.id == newItem.id
+
+            override fun areContentsTheSame(oldItem: UserEntity, newItem: UserEntity): Boolean =
+                    oldItem == newItem
+
         }
     }
 }

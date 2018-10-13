@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.content_main.*
 class MainActivity : AppCompatActivity() {
 
     private val mainViewMode by lazy { ViewModelProviders.of(this).get(MainViewMode::class.java) }
-    private val usersAdapter = UsersAdapter(mutableListOf())
+    private val usersAdapter = UsersAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
             adapter = usersAdapter
         }
 
-        mainViewMode.usersLiveData.observe(this, Observer(usersAdapter::updateUsers))
+        mainViewMode.usersLiveData.observe(this, Observer(usersAdapter::submitList))
 
         fab.setOnClickListener {
             mainViewMode.loadUsers()

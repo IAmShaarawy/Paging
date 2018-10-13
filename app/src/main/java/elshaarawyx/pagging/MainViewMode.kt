@@ -7,7 +7,7 @@ import android.arch.lifecycle.ViewModel
  * Created by elshaarawy on 10/13/18.
  */
 class MainViewMode : ViewModel() {
-    val usersLiveData: MutableLiveData<UserEntity> by lazy { MutableLiveData<UserEntity>() }
+    val usersLiveData: MutableLiveData<List<UserEntity>> by lazy { MutableLiveData<List<UserEntity>>() }
     private val userModel: UserModel by lazy { MainModel() }
 
     fun loadUsers() {
