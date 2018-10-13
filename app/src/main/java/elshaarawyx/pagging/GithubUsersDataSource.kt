@@ -8,7 +8,7 @@ import kotlinx.coroutines.experimental.launch
 /**
  * Created by elshaarawy on 10/14/18.
  */
-class GithubUsersPageKeyedDataSource : PageKeyedDataSource<Long, UserEntity>() {
+class GithubUsersDataSource : PageKeyedDataSource<Long, UserEntity>() {
 
     override fun loadInitial(params: LoadInitialParams<Long>, callback: LoadInitialCallback<Long, UserEntity>) {
         loadData(0) {
