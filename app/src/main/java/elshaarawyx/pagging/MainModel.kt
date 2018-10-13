@@ -1,5 +1,9 @@
 package elshaarawyx.pagging
 
+import android.arch.lifecycle.LiveData
+import android.arch.paging.LivePagedListBuilder
+import android.arch.paging.PagedList
+import android.os.Build
 import kotlinx.coroutines.experimental.Dispatchers
 import kotlinx.coroutines.experimental.GlobalScope
 import kotlinx.coroutines.experimental.launch
@@ -9,25 +13,12 @@ import kotlinx.coroutines.experimental.launch
  * Created by elshaarawy on 10/13/18.
  */
 class MainModel : UserModel {
+    private val dataSourceFactory by lazy { GithubUsersDataSourceFactory() }
 
-    override inline fun loadUsers(crossinline onFailure: (String) -> Unit,
-                                  noinline onSuccess: (List<UserEntity>) -> Unit) {
-        GlobalScope.launch {
-
-            val response = GithubAPIsFactory()
-                    .create(UsersAPIs::class.java)
-                    .retrieveUsers(45)
-                    .await()
-
-            GlobalScope.launch(Dispatchers.Main) {
-                if (response.isSuccessful) {
-                    response.body()
-                            ?.also(onSuccess)
-                            ?: onFailure("No users found")
-                } else {
-                    onFailure("Failed to load users error: ${response.code()}, ${response.errorBody()}")
-                }
-            }
-        }
+    override fun loadUsers(): LiveData<PagedList<UserEntity>> {
+        val config = PagedList.Config.Builder().setEnablePlaceholders(false).build()
+        return LivePagedListBuilder(dataSourceFactory, config).build()
     }
+
+
 }
