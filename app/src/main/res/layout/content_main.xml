@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:layout_marginStart="16dp"
     android:layout_marginEnd="16dp"
+    android:id="@+id/rvUsers"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="elshaarawyx.pagging.MainActivity"
     tools:layoutManager="android.support.v7.widget.GridLayoutManager"

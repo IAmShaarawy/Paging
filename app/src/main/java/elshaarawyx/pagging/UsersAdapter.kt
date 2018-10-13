@@ -20,8 +20,10 @@ class UsersAdapter(private val usersList: MutableList<User>) : RecyclerView.Adap
     override fun onBindViewHolder(userViewHolder: UserViewHolder, position: Int) =
             userViewHolder.bind(usersList[position])
 
-    fun updateUsers(list: List<User>) = apply {
-        usersList.addAll(list)
-        notifyDataSetChanged()
+    fun updateUsers(user: User?): Unit {
+        user?.let {
+            usersList.add(it)
+            notifyItemInserted(usersList.size)
+        }
     }
 }
