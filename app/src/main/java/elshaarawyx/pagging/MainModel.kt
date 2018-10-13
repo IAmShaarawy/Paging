@@ -23,7 +23,7 @@ class MainModel : UserModel {
             GlobalScope.launch(Dispatchers.Main) {
                 if (response.isSuccessful) {
                     response.body()?.forEach {
-                        delay(1000)
+                        delay(300)
                         onSuccess(it)
                     } ?: onFailure("No users found")
                 } else {
