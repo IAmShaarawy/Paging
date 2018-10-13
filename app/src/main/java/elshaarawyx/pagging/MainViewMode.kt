@@ -1,17 +1,19 @@
 package elshaarawyx.pagging
 
-import android.arch.lifecycle.MutableLiveData
+import android.arch.lifecycle.MediatorLiveData
 import android.arch.lifecycle.ViewModel
+import android.arch.paging.PagedList
 
 /**
  * Created by elshaarawy on 10/13/18.
  */
 class MainViewMode : ViewModel() {
-    val usersLiveData: MutableLiveData<List<UserEntity>> by lazy { MutableLiveData<List<UserEntity>>() }
+    val usersLiveData by lazy { MediatorLiveData<PagedList<UserEntity>>() }
     private val userModel: UserModel by lazy { MainModel() }
 
     fun loadUsers() {
-        userModel.loadUsers({ it log "SERVER_ERROR" }, usersLiveData::postValue)
+        val pagedUsersList = userModel.loadUsers()
+        usersLiveData.addSource(pagedUsersList){}
     }
 
 }
