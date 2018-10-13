@@ -2,6 +2,7 @@ package elshaarawyx.pagging
 
 import kotlinx.coroutines.experimental.Dispatchers
 import kotlinx.coroutines.experimental.GlobalScope
+import kotlinx.coroutines.experimental.delay
 import kotlinx.coroutines.experimental.launch
 
 
@@ -11,7 +12,7 @@ import kotlinx.coroutines.experimental.launch
 class MainModel : UserModel {
 
     override inline fun loadUsers(crossinline onFailure: (Exception) -> Unit,
-                                  crossinline onSuccess: (List<User>) -> Unit) {
+                                  noinline onSuccess: (User) -> Unit) {
         GlobalScope.launch {
 
             val users = GithubAPIsFactory()
@@ -20,7 +21,10 @@ class MainModel : UserModel {
                     .await()
 
             GlobalScope.launch(Dispatchers.Main) {
-                onSuccess(users)
+                users.forEach {
+                    delay(1000)
+                    onSuccess(it)
+                }
             }
         }
     }
