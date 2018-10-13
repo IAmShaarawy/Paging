@@ -2,6 +2,7 @@ package elshaarawyx.pagging
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
+import android.util.Log
 import kotlinx.coroutines.experimental.delay
 
 /**
@@ -12,7 +13,7 @@ class MainViewMode : ViewModel() {
     private val userModel: UserModel by lazy { MainModel() }
 
     fun loadUsers() {
-        userModel.loadUsers({}, usersLiveData::postValue)
+        userModel.loadUsers({ it log "SERVER_ERROR" }, usersLiveData::postValue)
     }
 
 }

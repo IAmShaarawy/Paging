@@ -11,19 +11,23 @@ import kotlinx.coroutines.experimental.launch
  */
 class MainModel : UserModel {
 
-    override inline fun loadUsers(crossinline onFailure: (Exception) -> Unit,
+    override inline fun loadUsers(crossinline onFailure: (String) -> Unit,
                                   noinline onSuccess: (User) -> Unit) {
         GlobalScope.launch {
 
-            val users = GithubAPIsFactory()
+            val response = GithubAPIsFactory()
                     .create(UsersAPIs::class.java)
-                    .retrieveUsers(0)
+                    .retrieveUsers(45)
                     .await()
 
             GlobalScope.launch(Dispatchers.Main) {
-                users.forEach {
-                    delay(1000)
-                    onSuccess(it)
+                if (response.isSuccessful) {
+                    response.body()?.forEach {
+                        delay(1000)
+                        onSuccess(it)
+                    } ?: onFailure("No users found")
+                } else {
+                    onFailure("Failed to load users error: ${response.code()}, ${response.errorBody()}")
                 }
             }
         }

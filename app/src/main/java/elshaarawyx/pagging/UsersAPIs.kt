@@ -1,6 +1,7 @@
 package elshaarawyx.pagging
 
 import kotlinx.coroutines.experimental.Deferred
+import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -9,5 +10,5 @@ import retrofit2.http.Query
  */
 interface UsersAPIs {
     @GET("/users")
-    fun retrieveUsers(@Query("since") since: Long): Deferred<List<User>>
+    fun retrieveUsers(@Query("since") since: Long): Deferred<Response<List<User>>>
 }
