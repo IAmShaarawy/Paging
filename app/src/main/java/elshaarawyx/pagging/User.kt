@@ -1,6 +1,5 @@
 package elshaarawyx.pagging
 
-import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 /**
@@ -8,4 +7,5 @@ import com.google.gson.annotations.SerializedName
  */
 data class User(val login: String,
                 val id: Long,
-                @SerializedName("avatar_url") val avatar: String)
+                @SerializedName("avatar_url") val avatar: String,
+                @SerializedName("html_url") val profileUrl: String)
