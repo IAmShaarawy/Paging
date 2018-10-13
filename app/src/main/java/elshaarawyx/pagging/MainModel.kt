@@ -2,7 +2,6 @@ package elshaarawyx.pagging
 
 import kotlinx.coroutines.experimental.Dispatchers
 import kotlinx.coroutines.experimental.GlobalScope
-import kotlinx.coroutines.experimental.delay
 import kotlinx.coroutines.experimental.launch
 
 
