@@ -1,5 +1,6 @@
-package elshaarawyx.pagging
+package elshaarawyx.pagging.retrofit
 
+import elshaarawyx.pagging.model.UserEntity
 import kotlinx.coroutines.experimental.Deferred
 import retrofit2.Response
 import retrofit2.http.GET

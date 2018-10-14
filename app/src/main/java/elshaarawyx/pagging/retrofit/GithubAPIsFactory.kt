@@ -1,4 +1,4 @@
-package elshaarawyx.pagging
+package elshaarawyx.pagging.retrofit
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.experimental.CoroutineCallAdapterFactory
 import retrofit2.Retrofit

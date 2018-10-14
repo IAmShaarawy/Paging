@@ -1,8 +1,9 @@
-package elshaarawyx.pagging
+package elshaarawyx.pagging.view
 
 import android.arch.paging.PagedListAdapter
 import android.support.v7.util.DiffUtil
 import android.view.ViewGroup
+import elshaarawyx.pagging.model.UserEntity
 
 /**
  * Created by elshaarawy on 10/13/18.

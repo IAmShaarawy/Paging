@@ -1,6 +1,8 @@
-package elshaarawyx.pagging
+package elshaarawyx.pagging.model
 
 import android.arch.paging.PageKeyedDataSource
+import elshaarawyx.pagging.retrofit.GithubAPIsFactory
+import elshaarawyx.pagging.retrofit.UsersAPIs
 import kotlinx.coroutines.experimental.GlobalScope
 import kotlinx.coroutines.experimental.launch
 import retrofit2.Response

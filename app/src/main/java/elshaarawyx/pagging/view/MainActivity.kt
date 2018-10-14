@@ -1,10 +1,12 @@
-package elshaarawyx.pagging
+package elshaarawyx.pagging.view
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
+import elshaarawyx.pagging.viewmodel.MainViewMode
+import elshaarawyx.pagging.R
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 

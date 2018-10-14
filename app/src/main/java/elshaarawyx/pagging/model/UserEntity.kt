@@ -1,4 +1,4 @@
-package elshaarawyx.pagging
+package elshaarawyx.pagging.model
 
 import com.google.gson.annotations.SerializedName
 

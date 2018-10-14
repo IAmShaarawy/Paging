@@ -8,7 +8,7 @@
     android:layout_marginEnd="16dp"
     android:id="@+id/rvUsers"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="elshaarawyx.pagging.MainActivity"
+    tools:context="elshaarawyx.pagging.view.MainActivity"
     tools:layoutManager="android.support.v7.widget.GridLayoutManager"
     tools:listitem="@layout/item_user"
     tools:showIn="@layout/activity_main"

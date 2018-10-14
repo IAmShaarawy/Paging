@@ -1,7 +1,10 @@
-package elshaarawyx.pagging
+package elshaarawyx.pagging.viewmodel
 
 import android.arch.lifecycle.*
 import android.arch.paging.PagedList
+import elshaarawyx.pagging.model.MainModel
+import elshaarawyx.pagging.model.UserEntity
+import elshaarawyx.pagging.model.UserModel
 
 /**
  * Created by elshaarawy on 10/13/18.
