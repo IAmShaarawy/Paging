@@ -1,9 +1,9 @@
 package elshaarawyx.pagging
 
 import android.arch.paging.PageKeyedDataSource
-import kotlinx.coroutines.experimental.Dispatchers
 import kotlinx.coroutines.experimental.GlobalScope
 import kotlinx.coroutines.experimental.launch
+import retrofit2.Response
 
 /**
  * Created by elshaarawy on 10/14/18.
@@ -34,18 +34,13 @@ class GithubUsersDataSource : PageKeyedDataSource<Long, UserEntity>() {
 
     private inline fun loadData(since: Long, crossinline onSuccess: (List<UserEntity>) -> Unit) {
         GlobalScope.launch {
-
-            val response = GithubAPIsFactory()
+            GithubAPIsFactory()
                     .create(UsersAPIs::class.java)
                     .retrieveUsers(since)
                     .await()
-
-            GlobalScope.launch(Dispatchers.Main) {
-                if (response.isSuccessful) {
-                    response.body()
-                            ?.also(onSuccess)
-                }
-            }
+                    .takeIf { it.isSuccessful }
+                    ?.let(Response<List<UserEntity>>::body)
+                    ?.let(onSuccess)
         }
     }
 }

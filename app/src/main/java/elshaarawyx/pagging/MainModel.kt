@@ -3,10 +3,6 @@ package elshaarawyx.pagging
 import android.arch.lifecycle.LiveData
 import android.arch.paging.LivePagedListBuilder
 import android.arch.paging.PagedList
-import android.os.Build
-import kotlinx.coroutines.experimental.Dispatchers
-import kotlinx.coroutines.experimental.GlobalScope
-import kotlinx.coroutines.experimental.launch
 
 
 /**
@@ -18,7 +14,8 @@ class MainModel : UserModel {
     override fun loadUsers(): LiveData<PagedList<UserEntity>> {
         val config = PagedList.Config
                 .Builder()
-                .setPageSize(4)
+                .setPageSize(46)
+                .setPrefetchDistance(23)
                 .setEnablePlaceholders(false)
                 .build()
         return LivePagedListBuilder(dataSourceFactory, config).build()

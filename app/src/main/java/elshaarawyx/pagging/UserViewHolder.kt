@@ -15,7 +15,7 @@ class UserViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     fun bind(userEntity: UserEntity) {
         itemView.apply {
             userAvatar loadAsRounded userEntity.avatar
-            userLogin.text = userEntity.login
+            userLogin.text = "${userEntity.login}\n${userEntity.id}"
             setOnClickListener {
                 context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(userEntity.profileUrl)))
             }
