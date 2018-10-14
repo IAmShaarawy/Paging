@@ -1,6 +1,5 @@
-package elshaarawyx.pagging
+package elshaarawyx.pagging.extensions
 
-import android.util.Log
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -13,12 +12,4 @@ infix fun ImageView.loadAsRounded(url: String) {
             .load(url)
             .apply(RequestOptions.circleCropTransform())
             .into(this)
-}
-
-infix fun <T> T.logError(tag: String) {
-    Log.e(tag, this.toString())
-}
-
-infix fun <T> T.log(tag: String) {
-    Log.d(tag, this.toString())
 }
