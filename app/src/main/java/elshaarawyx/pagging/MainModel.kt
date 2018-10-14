@@ -16,7 +16,11 @@ class MainModel : UserModel {
     private val dataSourceFactory by lazy { GithubUsersDataSourceFactory() }
 
     override fun loadUsers(): LiveData<PagedList<UserEntity>> {
-        val config = PagedList.Config.Builder().setEnablePlaceholders(false).build()
+        val config = PagedList.Config
+                .Builder()
+                .setPageSize(4)
+                .setEnablePlaceholders(false)
+                .build()
         return LivePagedListBuilder(dataSourceFactory, config).build()
     }
 

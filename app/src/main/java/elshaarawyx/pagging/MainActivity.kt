@@ -23,10 +23,8 @@ class MainActivity : AppCompatActivity() {
             adapter = usersAdapter
         }
 
-        mainViewMode.usersLiveData.observe(this, Observer(usersAdapter::submitList))
-
         fab.setOnClickListener {
-            mainViewMode.loadUsers()
+            mainViewMode.loadUsers().observe(this, Observer(usersAdapter::submitList))
         }
     }
 }
